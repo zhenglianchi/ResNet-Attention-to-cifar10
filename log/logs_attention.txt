@@ -1,0 +1,553 @@
+Namespace(batch_size=128, debug=False, gpu=0, lr=0.001, nepochs=200, save='log/')
+ARSC_NET(
+  (conv1): Conv2d(3, 64, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), bias=False)
+  (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (relu1): ReLU()
+  (maxpool1): AdaptiveMaxPool2d(output_size=(64, 64))
+  (resattention1): Residual_attention(
+    (conv1): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (conv2): Conv2d(32, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (conv3): Conv2d(64, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+    (relu): ReLU()
+    (bn): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (attention): Channel_Spatial_Attention(
+      (channel): ChannelAttention(
+        (avg_pool): AdaptiveAvgPool2d(output_size=1)
+        (max_pool): AdaptiveMaxPool2d(output_size=1)
+        (fc): Sequential(
+          (0): Conv2d(128, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (1): ReLU()
+          (2): Conv2d(64, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        )
+        (sigmoid): Sigmoid()
+      )
+      (Spatial): SpatialAttention(
+        (conv1): Conv2d(2, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), bias=False)
+        (sigmoid): Sigmoid()
+      )
+    )
+  )
+  (attention): Channel_Spatial_Attention(
+    (channel): ChannelAttention(
+      (avg_pool): AdaptiveAvgPool2d(output_size=1)
+      (max_pool): AdaptiveMaxPool2d(output_size=1)
+      (fc): Sequential(
+        (0): Conv2d(128, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): ReLU()
+        (2): Conv2d(64, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      )
+      (sigmoid): Sigmoid()
+    )
+    (Spatial): SpatialAttention(
+      (conv1): Conv2d(2, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), bias=False)
+      (sigmoid): Sigmoid()
+    )
+  )
+  (resattention2): Residual_attention(
+    (conv1): Conv2d(128, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (conv3): Conv2d(128, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+    (relu): ReLU()
+    (bn): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (attention): Channel_Spatial_Attention(
+      (channel): ChannelAttention(
+        (avg_pool): AdaptiveAvgPool2d(output_size=1)
+        (max_pool): AdaptiveMaxPool2d(output_size=1)
+        (fc): Sequential(
+          (0): Conv2d(64, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (1): ReLU()
+          (2): Conv2d(32, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        )
+        (sigmoid): Sigmoid()
+      )
+      (Spatial): SpatialAttention(
+        (conv1): Conv2d(2, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), bias=False)
+        (sigmoid): Sigmoid()
+      )
+    )
+  )
+  (avepool): AdaptiveAvgPool2d(output_size=(1, 1))
+  (flat): Flatten()
+  (fc): Linear(in_features=64, out_features=10, bias=True)
+)
+Number of parameters: 230000
+epoch:1
+Train loss : 2.1371	Train Acc : 0.2423
+epoch:2
+Train loss : 1.9625	Train Acc : 0.3002
+epoch:3
+Train loss : 1.8559	Train Acc : 0.3299
+epoch:4
+Train loss : 1.7759	Train Acc : 0.3551
+epoch:5
+Train loss : 1.7099	Train Acc : 0.3726
+Val loss : 1.6775	Val Acc : 0.3800
+best accuracy is 0.3800
+epoch:6
+Train loss : 1.6786	Train Acc : 0.3717
+epoch:7
+Train loss : 1.5990	Train Acc : 0.4013
+epoch:8
+Train loss : 1.5470	Train Acc : 0.4245
+epoch:9
+Train loss : 1.4905	Train Acc : 0.4470
+epoch:10
+Train loss : 1.4503	Train Acc : 0.4667
+Val loss : 1.4528	Val Acc : 0.4660
+best accuracy is 0.4660
+epoch:11
+Train loss : 1.4177	Train Acc : 0.4769
+epoch:12
+Train loss : 1.3691	Train Acc : 0.4988
+epoch:13
+Train loss : 1.3364	Train Acc : 0.5132
+epoch:14
+Train loss : 1.3123	Train Acc : 0.5200
+epoch:15
+Train loss : 1.2887	Train Acc : 0.5306
+Val loss : 1.2699	Val Acc : 0.5412
+best accuracy is 0.5412
+epoch:16
+Train loss : 1.2634	Train Acc : 0.5399
+epoch:17
+Train loss : 1.2434	Train Acc : 0.5495
+epoch:18
+Train loss : 1.2187	Train Acc : 0.5565
+epoch:19
+Train loss : 1.2044	Train Acc : 0.5636
+epoch:20
+Train loss : 1.1906	Train Acc : 0.5676
+Val loss : 1.2817	Val Acc : 0.5386
+best accuracy is 0.5412
+epoch:21
+Train loss : 1.1733	Train Acc : 0.5731
+epoch:22
+Train loss : 1.1596	Train Acc : 0.5810
+epoch:23
+Train loss : 1.1431	Train Acc : 0.5858
+epoch:24
+Train loss : 1.1285	Train Acc : 0.5910
+epoch:25
+Train loss : 1.1160	Train Acc : 0.5944
+Val loss : 1.1772	Val Acc : 0.5796
+best accuracy is 0.5796
+epoch:26
+Train loss : 1.1000	Train Acc : 0.6024
+epoch:27
+Train loss : 1.0960	Train Acc : 0.6041
+epoch:28
+Train loss : 1.0764	Train Acc : 0.6115
+epoch:29
+Train loss : 1.0704	Train Acc : 0.6127
+epoch:30
+Train loss : 1.0648	Train Acc : 0.6139
+Val loss : 1.1113	Val Acc : 0.5989
+best accuracy is 0.5989
+epoch:31
+Train loss : 1.0494	Train Acc : 0.6191
+epoch:32
+Train loss : 1.0375	Train Acc : 0.6239
+epoch:33
+Train loss : 1.0339	Train Acc : 0.6276
+epoch:34
+Train loss : 1.0216	Train Acc : 0.6317
+epoch:35
+Train loss : 1.0154	Train Acc : 0.6340
+Val loss : 1.0832	Val Acc : 0.6083
+best accuracy is 0.6083
+epoch:36
+Train loss : 1.0097	Train Acc : 0.6353
+epoch:37
+Train loss : 1.0039	Train Acc : 0.6395
+epoch:38
+Train loss : 0.9918	Train Acc : 0.6418
+epoch:39
+Train loss : 0.9860	Train Acc : 0.6429
+epoch:40
+Train loss : 0.9745	Train Acc : 0.6476
+Val loss : 1.0551	Val Acc : 0.6231
+best accuracy is 0.6231
+epoch:41
+Train loss : 0.9759	Train Acc : 0.6483
+epoch:42
+Train loss : 0.9683	Train Acc : 0.6495
+epoch:43
+Train loss : 0.9631	Train Acc : 0.6527
+epoch:44
+Train loss : 0.9527	Train Acc : 0.6571
+epoch:45
+Train loss : 0.9517	Train Acc : 0.6574
+Val loss : 1.0694	Val Acc : 0.6155
+best accuracy is 0.6231
+epoch:46
+Train loss : 0.9441	Train Acc : 0.6615
+epoch:47
+Train loss : 0.9383	Train Acc : 0.6618
+epoch:48
+Train loss : 0.9340	Train Acc : 0.6610
+epoch:49
+Train loss : 0.9296	Train Acc : 0.6645
+epoch:50
+Train loss : 0.9188	Train Acc : 0.6682
+Val loss : 1.0263	Val Acc : 0.6334
+best accuracy is 0.6334
+epoch:51
+Train loss : 0.9208	Train Acc : 0.6676
+epoch:52
+Train loss : 0.9101	Train Acc : 0.6725
+epoch:53
+Train loss : 0.9072	Train Acc : 0.6732
+epoch:54
+Train loss : 0.9033	Train Acc : 0.6752
+epoch:55
+Train loss : 0.8965	Train Acc : 0.6792
+Val loss : 1.0503	Val Acc : 0.6261
+best accuracy is 0.6334
+epoch:56
+Train loss : 0.8920	Train Acc : 0.6809
+epoch:57
+Train loss : 0.8894	Train Acc : 0.6807
+epoch:58
+Train loss : 0.8866	Train Acc : 0.6814
+epoch:59
+Train loss : 0.8829	Train Acc : 0.6803
+epoch:60
+Train loss : 0.8773	Train Acc : 0.6838
+Val loss : 1.0337	Val Acc : 0.6350
+best accuracy is 0.6350
+epoch:61
+Train loss : 0.8745	Train Acc : 0.6854
+epoch:62
+Train loss : 0.8680	Train Acc : 0.6854
+epoch:63
+Train loss : 0.8692	Train Acc : 0.6873
+epoch:64
+Train loss : 0.8643	Train Acc : 0.6896
+epoch:65
+Train loss : 0.8571	Train Acc : 0.6929
+Val loss : 1.0163	Val Acc : 0.6424
+best accuracy is 0.6424
+epoch:66
+Train loss : 0.8527	Train Acc : 0.6925
+epoch:67
+Train loss : 0.8527	Train Acc : 0.6921
+epoch:68
+Train loss : 0.8475	Train Acc : 0.6933
+epoch:69
+Train loss : 0.8468	Train Acc : 0.6934
+epoch:70
+Train loss : 0.8413	Train Acc : 0.6980
+Val loss : 1.0151	Val Acc : 0.6428
+best accuracy is 0.6428
+epoch:71
+Train loss : 0.8370	Train Acc : 0.6987
+epoch:72
+Train loss : 0.8346	Train Acc : 0.6995
+epoch:73
+Train loss : 0.8322	Train Acc : 0.7000
+epoch:74
+Train loss : 0.8267	Train Acc : 0.7018
+epoch:75
+Train loss : 0.8268	Train Acc : 0.7022
+Val loss : 0.9973	Val Acc : 0.6474
+best accuracy is 0.6474
+epoch:76
+Train loss : 0.8239	Train Acc : 0.7028
+epoch:77
+Train loss : 0.8189	Train Acc : 0.7051
+epoch:78
+Train loss : 0.8146	Train Acc : 0.7065
+epoch:79
+Train loss : 0.8163	Train Acc : 0.7066
+epoch:80
+Train loss : 0.8105	Train Acc : 0.7086
+Val loss : 1.0021	Val Acc : 0.6462
+best accuracy is 0.6474
+epoch:81
+Train loss : 0.8089	Train Acc : 0.7098
+epoch:82
+Train loss : 0.8066	Train Acc : 0.7096
+epoch:83
+Train loss : 0.8027	Train Acc : 0.7115
+epoch:84
+Train loss : 0.8015	Train Acc : 0.7115
+epoch:85
+Train loss : 0.7990	Train Acc : 0.7140
+Val loss : 1.0332	Val Acc : 0.6450
+best accuracy is 0.6474
+epoch:86
+Train loss : 0.7946	Train Acc : 0.7131
+epoch:87
+Train loss : 0.7956	Train Acc : 0.7148
+epoch:88
+Train loss : 0.7915	Train Acc : 0.7150
+epoch:89
+Train loss : 0.7871	Train Acc : 0.7174
+epoch:90
+Train loss : 0.7855	Train Acc : 0.7185
+Val loss : 1.0051	Val Acc : 0.6496
+best accuracy is 0.6496
+epoch:91
+Train loss : 0.7847	Train Acc : 0.7173
+epoch:92
+Train loss : 0.7815	Train Acc : 0.7178
+epoch:93
+Train loss : 0.7777	Train Acc : 0.7198
+epoch:94
+Train loss : 0.7789	Train Acc : 0.7212
+epoch:95
+Train loss : 0.7753	Train Acc : 0.7214
+Val loss : 0.9955	Val Acc : 0.6518
+best accuracy is 0.6518
+epoch:96
+Train loss : 0.7745	Train Acc : 0.7222
+epoch:97
+Train loss : 0.7722	Train Acc : 0.7237
+epoch:98
+Train loss : 0.7684	Train Acc : 0.7235
+epoch:99
+Train loss : 0.7671	Train Acc : 0.7242
+epoch:100
+Train loss : 0.7650	Train Acc : 0.7256
+Val loss : 0.9896	Val Acc : 0.6533
+best accuracy is 0.6533
+epoch:101
+Train loss : 0.7658	Train Acc : 0.7241
+epoch:102
+Train loss : 0.7627	Train Acc : 0.7258
+epoch:103
+Train loss : 0.7610	Train Acc : 0.7268
+epoch:104
+Train loss : 0.7568	Train Acc : 0.7280
+epoch:105
+Train loss : 0.7583	Train Acc : 0.7254
+Val loss : 0.9910	Val Acc : 0.6504
+best accuracy is 0.6533
+epoch:106
+Train loss : 0.7560	Train Acc : 0.7286
+epoch:107
+Train loss : 0.7525	Train Acc : 0.7298
+epoch:108
+Train loss : 0.7507	Train Acc : 0.7293
+epoch:109
+Train loss : 0.7469	Train Acc : 0.7318
+epoch:110
+Train loss : 0.7486	Train Acc : 0.7295
+Val loss : 0.9890	Val Acc : 0.6528
+best accuracy is 0.6533
+epoch:111
+Train loss : 0.7450	Train Acc : 0.7315
+epoch:112
+Train loss : 0.7479	Train Acc : 0.7309
+epoch:113
+Train loss : 0.7439	Train Acc : 0.7322
+epoch:114
+Train loss : 0.7429	Train Acc : 0.7324
+epoch:115
+Train loss : 0.7411	Train Acc : 0.7338
+Val loss : 0.9949	Val Acc : 0.6546
+best accuracy is 0.6546
+epoch:116
+Train loss : 0.7385	Train Acc : 0.7346
+epoch:117
+Train loss : 0.7366	Train Acc : 0.7340
+epoch:118
+Train loss : 0.7367	Train Acc : 0.7356
+epoch:119
+Train loss : 0.7343	Train Acc : 0.7367
+epoch:120
+Train loss : 0.7334	Train Acc : 0.7370
+Val loss : 0.9948	Val Acc : 0.6529
+best accuracy is 0.6546
+epoch:121
+Train loss : 0.7321	Train Acc : 0.7373
+epoch:122
+Train loss : 0.7327	Train Acc : 0.7372
+epoch:123
+Train loss : 0.7301	Train Acc : 0.7391
+epoch:124
+Train loss : 0.7267	Train Acc : 0.7389
+epoch:125
+Train loss : 0.7265	Train Acc : 0.7388
+Val loss : 0.9860	Val Acc : 0.6573
+best accuracy is 0.6573
+epoch:126
+Train loss : 0.7255	Train Acc : 0.7395
+epoch:127
+Train loss : 0.7227	Train Acc : 0.7392
+epoch:128
+Train loss : 0.7239	Train Acc : 0.7396
+epoch:129
+Train loss : 0.7229	Train Acc : 0.7397
+epoch:130
+Train loss : 0.7218	Train Acc : 0.7402
+Val loss : 0.9867	Val Acc : 0.6582
+best accuracy is 0.6582
+epoch:131
+Train loss : 0.7208	Train Acc : 0.7417
+epoch:132
+Train loss : 0.7169	Train Acc : 0.7431
+epoch:133
+Train loss : 0.7174	Train Acc : 0.7433
+epoch:134
+Train loss : 0.7143	Train Acc : 0.7446
+epoch:135
+Train loss : 0.7133	Train Acc : 0.7438
+Val loss : 0.9875	Val Acc : 0.6570
+best accuracy is 0.6582
+epoch:136
+Train loss : 0.7127	Train Acc : 0.7443
+epoch:137
+Train loss : 0.7109	Train Acc : 0.7450
+epoch:138
+Train loss : 0.7126	Train Acc : 0.7437
+epoch:139
+Train loss : 0.7105	Train Acc : 0.7460
+epoch:140
+Train loss : 0.7100	Train Acc : 0.7459
+Val loss : 0.9996	Val Acc : 0.6535
+best accuracy is 0.6582
+epoch:141
+Train loss : 0.7085	Train Acc : 0.7457
+epoch:142
+Train loss : 0.7078	Train Acc : 0.7465
+epoch:143
+Train loss : 0.7071	Train Acc : 0.7464
+epoch:144
+Train loss : 0.7048	Train Acc : 0.7460
+epoch:145
+Train loss : 0.7050	Train Acc : 0.7470
+Val loss : 0.9943	Val Acc : 0.6565
+best accuracy is 0.6582
+epoch:146
+Train loss : 0.7034	Train Acc : 0.7487
+epoch:147
+Train loss : 0.7025	Train Acc : 0.7477
+epoch:148
+Train loss : 0.7029	Train Acc : 0.7475
+epoch:149
+Train loss : 0.7016	Train Acc : 0.7489
+epoch:150
+Train loss : 0.6998	Train Acc : 0.7491
+Val loss : 0.9884	Val Acc : 0.6599
+best accuracy is 0.6599
+epoch:151
+Train loss : 0.7009	Train Acc : 0.7487
+epoch:152
+Train loss : 0.6989	Train Acc : 0.7506
+epoch:153
+Train loss : 0.6978	Train Acc : 0.7508
+epoch:154
+Train loss : 0.6965	Train Acc : 0.7514
+epoch:155
+Train loss : 0.6963	Train Acc : 0.7508
+Val loss : 0.9984	Val Acc : 0.6573
+best accuracy is 0.6599
+epoch:156
+Train loss : 0.6961	Train Acc : 0.7519
+epoch:157
+Train loss : 0.6944	Train Acc : 0.7514
+epoch:158
+Train loss : 0.6932	Train Acc : 0.7518
+epoch:159
+Train loss : 0.6928	Train Acc : 0.7525
+epoch:160
+Train loss : 0.6910	Train Acc : 0.7528
+Val loss : 0.9942	Val Acc : 0.6566
+best accuracy is 0.6599
+epoch:161
+Train loss : 0.6914	Train Acc : 0.7517
+epoch:162
+Train loss : 0.6913	Train Acc : 0.7529
+epoch:163
+Train loss : 0.6900	Train Acc : 0.7534
+epoch:164
+Train loss : 0.6903	Train Acc : 0.7523
+epoch:165
+Train loss : 0.6899	Train Acc : 0.7545
+Val loss : 0.9876	Val Acc : 0.6589
+best accuracy is 0.6599
+epoch:166
+Train loss : 0.6892	Train Acc : 0.7536
+epoch:167
+Train loss : 0.6883	Train Acc : 0.7540
+epoch:168
+Train loss : 0.6872	Train Acc : 0.7547
+epoch:169
+Train loss : 0.6878	Train Acc : 0.7546
+epoch:170
+Train loss : 0.6852	Train Acc : 0.7564
+Val loss : 0.9949	Val Acc : 0.6600
+best accuracy is 0.6600
+epoch:171
+Train loss : 0.6855	Train Acc : 0.7542
+epoch:172
+Train loss : 0.6844	Train Acc : 0.7560
+epoch:173
+Train loss : 0.6844	Train Acc : 0.7544
+epoch:174
+Train loss : 0.6849	Train Acc : 0.7551
+epoch:175
+Train loss : 0.6843	Train Acc : 0.7549
+Val loss : 0.9909	Val Acc : 0.6607
+best accuracy is 0.6607
+epoch:176
+Train loss : 0.6820	Train Acc : 0.7574
+epoch:177
+Train loss : 0.6836	Train Acc : 0.7558
+epoch:178
+Train loss : 0.6823	Train Acc : 0.7551
+epoch:179
+Train loss : 0.6804	Train Acc : 0.7572
+epoch:180
+Train loss : 0.6813	Train Acc : 0.7566
+Val loss : 0.9920	Val Acc : 0.6577
+best accuracy is 0.6607
+epoch:181
+Train loss : 0.6804	Train Acc : 0.7571
+epoch:182
+Train loss : 0.6806	Train Acc : 0.7565
+epoch:183
+Train loss : 0.6793	Train Acc : 0.7579
+epoch:184
+Train loss : 0.6795	Train Acc : 0.7578
+epoch:185
+Train loss : 0.6780	Train Acc : 0.7575
+Val loss : 0.9939	Val Acc : 0.6592
+best accuracy is 0.6607
+epoch:186
+Train loss : 0.6773	Train Acc : 0.7578
+epoch:187
+Train loss : 0.6785	Train Acc : 0.7578
+epoch:188
+Train loss : 0.6769	Train Acc : 0.7596
+epoch:189
+Train loss : 0.6763	Train Acc : 0.7586
+epoch:190
+Train loss : 0.6765	Train Acc : 0.7584
+Val loss : 0.9941	Val Acc : 0.6623
+best accuracy is 0.6623
+epoch:191
+Train loss : 0.6759	Train Acc : 0.7590
+epoch:192
+Train loss : 0.6752	Train Acc : 0.7595
+epoch:193
+Train loss : 0.6752	Train Acc : 0.7586
+epoch:194
+Train loss : 0.6748	Train Acc : 0.7587
+epoch:195
+Train loss : 0.6747	Train Acc : 0.7591
+Val loss : 0.9957	Val Acc : 0.6597
+best accuracy is 0.6623
+epoch:196
+Train loss : 0.6736	Train Acc : 0.7591
+epoch:197
+Train loss : 0.6726	Train Acc : 0.7605
+epoch:198
+Train loss : 0.6734	Train Acc : 0.7599
+epoch:199
+Train loss : 0.6728	Train Acc : 0.7600
+epoch:200
+Train loss : 0.6731	Train Acc : 0.7605
+Val loss : 0.9890	Val Acc : 0.6609
+best accuracy is 0.6623

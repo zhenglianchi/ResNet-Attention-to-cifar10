@@ -1,0 +1,661 @@
+Namespace(batch_size=128, debug=False, gpu=0, lr=0.001, model='resnet50', nepochs=200, save='log/')
+ResNet(
+  (conv1): Conv2d(3, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
+  (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (relu): ReLU(inplace=True)
+  (maxpool): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  (layer1): Sequential(
+    (0): Bottleneck(
+      (conv1): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (downsample): Sequential(
+        (0): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (1): Bottleneck(
+      (conv1): Conv2d(256, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+    (2): Bottleneck(
+      (conv1): Conv2d(256, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+  )
+  (layer2): Sequential(
+    (0): Bottleneck(
+      (conv1): Conv2d(256, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(128, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (downsample): Sequential(
+        (0): Conv2d(256, 512, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (1): Bottleneck(
+      (conv1): Conv2d(512, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(128, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+    (2): Bottleneck(
+      (conv1): Conv2d(512, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(128, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+    (3): Bottleneck(
+      (conv1): Conv2d(512, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(128, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+  )
+  (layer3): Sequential(
+    (0): Bottleneck(
+      (conv1): Conv2d(512, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (downsample): Sequential(
+        (0): Conv2d(512, 1024, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (1): Bottleneck(
+      (conv1): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+    (2): Bottleneck(
+      (conv1): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+    (3): Bottleneck(
+      (conv1): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+    (4): Bottleneck(
+      (conv1): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+    (5): Bottleneck(
+      (conv1): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+  )
+  (layer4): Sequential(
+    (0): Bottleneck(
+      (conv1): Conv2d(1024, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(512, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (downsample): Sequential(
+        (0): Conv2d(1024, 2048, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (1): Bottleneck(
+      (conv1): Conv2d(2048, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(512, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+    (2): Bottleneck(
+      (conv1): Conv2d(2048, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(512, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+  )
+  (avgpool): AdaptiveAvgPool2d(output_size=(1, 1))
+  (fc): Sequential(
+    (0): Linear(in_features=2048, out_features=10, bias=True)
+    (1): LogSoftmax(dim=1)
+  )
+)
+Number of parameters: 20490
+epoch:1
+Train loss : 1.1698	Train Acc : 0.6825
+epoch:2
+Train loss : 0.7509	Train Acc : 0.7672
+epoch:3
+Train loss : 0.6710	Train Acc : 0.7837
+epoch:4
+Train loss : 0.6353	Train Acc : 0.7904
+epoch:5
+Train loss : 0.6118	Train Acc : 0.7942
+Val loss : 0.5989	Val Acc : 0.7972
+best accuracy is 0.7972
+epoch:6
+Train loss : 0.5816	Train Acc : 0.8035
+epoch:7
+Train loss : 0.5698	Train Acc : 0.8073
+epoch:8
+Train loss : 0.5616	Train Acc : 0.8086
+epoch:9
+Train loss : 0.5509	Train Acc : 0.8112
+epoch:10
+Train loss : 0.5445	Train Acc : 0.8143
+Val loss : 0.5574	Val Acc : 0.8082
+best accuracy is 0.8082
+epoch:11
+Train loss : 0.5418	Train Acc : 0.8148
+epoch:12
+Train loss : 0.5337	Train Acc : 0.8164
+epoch:13
+Train loss : 0.5303	Train Acc : 0.8176
+epoch:14
+Train loss : 0.5236	Train Acc : 0.8219
+epoch:15
+Train loss : 0.5228	Train Acc : 0.8197
+Val loss : 0.5433	Val Acc : 0.8090
+best accuracy is 0.8090
+epoch:16
+Train loss : 0.5162	Train Acc : 0.8211
+epoch:17
+Train loss : 0.5135	Train Acc : 0.8225
+epoch:18
+Train loss : 0.5095	Train Acc : 0.8240
+epoch:19
+Train loss : 0.5076	Train Acc : 0.8240
+epoch:20
+Train loss : 0.5057	Train Acc : 0.8242
+Val loss : 0.5352	Val Acc : 0.8125
+best accuracy is 0.8125
+epoch:21
+Train loss : 0.5024	Train Acc : 0.8264
+epoch:22
+Train loss : 0.5021	Train Acc : 0.8268
+epoch:23
+Train loss : 0.4972	Train Acc : 0.8276
+epoch:24
+Train loss : 0.4983	Train Acc : 0.8271
+epoch:25
+Train loss : 0.4937	Train Acc : 0.8299
+Val loss : 0.5278	Val Acc : 0.8144
+best accuracy is 0.8144
+epoch:26
+Train loss : 0.4925	Train Acc : 0.8289
+epoch:27
+Train loss : 0.4905	Train Acc : 0.8292
+epoch:28
+Train loss : 0.4902	Train Acc : 0.8296
+epoch:29
+Train loss : 0.4855	Train Acc : 0.8317
+epoch:30
+Train loss : 0.4894	Train Acc : 0.8300
+Val loss : 0.5185	Val Acc : 0.8189
+best accuracy is 0.8189
+epoch:31
+Train loss : 0.4851	Train Acc : 0.8319
+epoch:32
+Train loss : 0.4839	Train Acc : 0.8320
+epoch:33
+Train loss : 0.4819	Train Acc : 0.8333
+epoch:34
+Train loss : 0.4777	Train Acc : 0.8349
+epoch:35
+Train loss : 0.4784	Train Acc : 0.8332
+Val loss : 0.5108	Val Acc : 0.8216
+best accuracy is 0.8216
+epoch:36
+Train loss : 0.4745	Train Acc : 0.8340
+epoch:37
+Train loss : 0.4734	Train Acc : 0.8344
+epoch:38
+Train loss : 0.4759	Train Acc : 0.8346
+epoch:39
+Train loss : 0.4752	Train Acc : 0.8336
+epoch:40
+Train loss : 0.4738	Train Acc : 0.8364
+Val loss : 0.5019	Val Acc : 0.8243
+best accuracy is 0.8243
+epoch:41
+Train loss : 0.4712	Train Acc : 0.8361
+epoch:42
+Train loss : 0.4690	Train Acc : 0.8370
+epoch:43
+Train loss : 0.4699	Train Acc : 0.8364
+epoch:44
+Train loss : 0.4694	Train Acc : 0.8364
+epoch:45
+Train loss : 0.4679	Train Acc : 0.8373
+Val loss : 0.4921	Val Acc : 0.8262
+best accuracy is 0.8262
+epoch:46
+Train loss : 0.4677	Train Acc : 0.8371
+epoch:47
+Train loss : 0.4625	Train Acc : 0.8384
+epoch:48
+Train loss : 0.4625	Train Acc : 0.8398
+epoch:49
+Train loss : 0.4641	Train Acc : 0.8383
+epoch:50
+Train loss : 0.4618	Train Acc : 0.8403
+Val loss : 0.4953	Val Acc : 0.8284
+best accuracy is 0.8284
+epoch:51
+Train loss : 0.4609	Train Acc : 0.8391
+epoch:52
+Train loss : 0.4585	Train Acc : 0.8404
+epoch:53
+Train loss : 0.4602	Train Acc : 0.8391
+epoch:54
+Train loss : 0.4604	Train Acc : 0.8406
+epoch:55
+Train loss : 0.4564	Train Acc : 0.8409
+Val loss : 0.4951	Val Acc : 0.8260
+best accuracy is 0.8284
+epoch:56
+Train loss : 0.4562	Train Acc : 0.8416
+epoch:57
+Train loss : 0.4524	Train Acc : 0.8427
+epoch:58
+Train loss : 0.4530	Train Acc : 0.8421
+epoch:59
+Train loss : 0.4538	Train Acc : 0.8422
+epoch:60
+Train loss : 0.4527	Train Acc : 0.8427
+Val loss : 0.4921	Val Acc : 0.8283
+best accuracy is 0.8284
+epoch:61
+Train loss : 0.4513	Train Acc : 0.8419
+epoch:62
+Train loss : 0.4526	Train Acc : 0.8433
+epoch:63
+Train loss : 0.4522	Train Acc : 0.8424
+epoch:64
+Train loss : 0.4493	Train Acc : 0.8442
+epoch:65
+Train loss : 0.4482	Train Acc : 0.8437
+Val loss : 0.4821	Val Acc : 0.8319
+best accuracy is 0.8319
+epoch:66
+Train loss : 0.4457	Train Acc : 0.8457
+epoch:67
+Train loss : 0.4483	Train Acc : 0.8440
+epoch:68
+Train loss : 0.4481	Train Acc : 0.8448
+epoch:69
+Train loss : 0.4461	Train Acc : 0.8443
+epoch:70
+Train loss : 0.4468	Train Acc : 0.8441
+Val loss : 0.4818	Val Acc : 0.8286
+best accuracy is 0.8319
+epoch:71
+Train loss : 0.4424	Train Acc : 0.8457
+epoch:72
+Train loss : 0.4454	Train Acc : 0.8449
+epoch:73
+Train loss : 0.4428	Train Acc : 0.8461
+epoch:74
+Train loss : 0.4419	Train Acc : 0.8467
+epoch:75
+Train loss : 0.4403	Train Acc : 0.8473
+Val loss : 0.4816	Val Acc : 0.8326
+best accuracy is 0.8326
+epoch:76
+Train loss : 0.4423	Train Acc : 0.8464
+epoch:77
+Train loss : 0.4408	Train Acc : 0.8472
+epoch:78
+Train loss : 0.4393	Train Acc : 0.8483
+epoch:79
+Train loss : 0.4408	Train Acc : 0.8459
+epoch:80
+Train loss : 0.4396	Train Acc : 0.8466
+Val loss : 0.4831	Val Acc : 0.8320
+best accuracy is 0.8326
+epoch:81
+Train loss : 0.4407	Train Acc : 0.8473
+epoch:82
+Train loss : 0.4416	Train Acc : 0.8462
+epoch:83
+Train loss : 0.4353	Train Acc : 0.8481
+epoch:84
+Train loss : 0.4371	Train Acc : 0.8483
+epoch:85
+Train loss : 0.4389	Train Acc : 0.8478
+Val loss : 0.4800	Val Acc : 0.8342
+best accuracy is 0.8342
+epoch:86
+Train loss : 0.4351	Train Acc : 0.8491
+epoch:87
+Train loss : 0.4361	Train Acc : 0.8487
+epoch:88
+Train loss : 0.4357	Train Acc : 0.8485
+epoch:89
+Train loss : 0.4338	Train Acc : 0.8494
+epoch:90
+Train loss : 0.4356	Train Acc : 0.8478
+Val loss : 0.4818	Val Acc : 0.8309
+best accuracy is 0.8342
+epoch:91
+Train loss : 0.4323	Train Acc : 0.8492
+epoch:92
+Train loss : 0.4317	Train Acc : 0.8496
+epoch:93
+Train loss : 0.4327	Train Acc : 0.8490
+epoch:94
+Train loss : 0.4304	Train Acc : 0.8513
+epoch:95
+Train loss : 0.4300	Train Acc : 0.8510
+Val loss : 0.4779	Val Acc : 0.8334
+best accuracy is 0.8342
+epoch:96
+Train loss : 0.4313	Train Acc : 0.8503
+epoch:97
+Train loss : 0.4311	Train Acc : 0.8502
+epoch:98
+Train loss : 0.4277	Train Acc : 0.8512
+epoch:99
+Train loss : 0.4269	Train Acc : 0.8512
+epoch:100
+Train loss : 0.4284	Train Acc : 0.8505
+Val loss : 0.4742	Val Acc : 0.8327
+best accuracy is 0.8342
+epoch:101
+Train loss : 0.4301	Train Acc : 0.8504
+epoch:102
+Train loss : 0.4261	Train Acc : 0.8511
+epoch:103
+Train loss : 0.4292	Train Acc : 0.8512
+epoch:104
+Train loss : 0.4256	Train Acc : 0.8513
+epoch:105
+Train loss : 0.4231	Train Acc : 0.8530
+Val loss : 0.4744	Val Acc : 0.8345
+best accuracy is 0.8345
+epoch:106
+Train loss : 0.4277	Train Acc : 0.8520
+epoch:107
+Train loss : 0.4252	Train Acc : 0.8532
+epoch:108
+Train loss : 0.4243	Train Acc : 0.8529
+epoch:109
+Train loss : 0.4248	Train Acc : 0.8523
+epoch:110
+Train loss : 0.4238	Train Acc : 0.8524
+Val loss : 0.4702	Val Acc : 0.8352
+best accuracy is 0.8352
+epoch:111
+Train loss : 0.4238	Train Acc : 0.8524
+epoch:112
+Train loss : 0.4230	Train Acc : 0.8538
+epoch:113
+Train loss : 0.4233	Train Acc : 0.8529
+epoch:114
+Train loss : 0.4219	Train Acc : 0.8542
+epoch:115
+Train loss : 0.4207	Train Acc : 0.8540
+Val loss : 0.4720	Val Acc : 0.8351
+best accuracy is 0.8352
+epoch:116
+Train loss : 0.4190	Train Acc : 0.8539
+epoch:117
+Train loss : 0.4228	Train Acc : 0.8535
+epoch:118
+Train loss : 0.4225	Train Acc : 0.8526
+epoch:119
+Train loss : 0.4212	Train Acc : 0.8528
+epoch:120
+Train loss : 0.4158	Train Acc : 0.8562
+Val loss : 0.4716	Val Acc : 0.8344
+best accuracy is 0.8352
+epoch:121
+Train loss : 0.4197	Train Acc : 0.8544
+epoch:122
+Train loss : 0.4185	Train Acc : 0.8547
+epoch:123
+Train loss : 0.4164	Train Acc : 0.8562
+epoch:124
+Train loss : 0.4184	Train Acc : 0.8535
+epoch:125
+Train loss : 0.4177	Train Acc : 0.8543
+Val loss : 0.4742	Val Acc : 0.8364
+best accuracy is 0.8364
+epoch:126
+Train loss : 0.4156	Train Acc : 0.8555
+epoch:127
+Train loss : 0.4164	Train Acc : 0.8550
+epoch:128
+Train loss : 0.4159	Train Acc : 0.8564
+epoch:129
+Train loss : 0.4155	Train Acc : 0.8560
+epoch:130
+Train loss : 0.4166	Train Acc : 0.8550
+Val loss : 0.4671	Val Acc : 0.8371
+best accuracy is 0.8371
+epoch:131
+Train loss : 0.4130	Train Acc : 0.8575
+epoch:132
+Train loss : 0.4153	Train Acc : 0.8555
+epoch:133
+Train loss : 0.4132	Train Acc : 0.8563
+epoch:134
+Train loss : 0.4116	Train Acc : 0.8580
+epoch:135
+Train loss : 0.4115	Train Acc : 0.8575
+Val loss : 0.4661	Val Acc : 0.8373
+best accuracy is 0.8373
+epoch:136
+Train loss : 0.4133	Train Acc : 0.8562
+epoch:137
+Train loss : 0.4114	Train Acc : 0.8574
+epoch:138
+Train loss : 0.4147	Train Acc : 0.8565
+epoch:139
+Train loss : 0.4110	Train Acc : 0.8564
+epoch:140
+Train loss : 0.4104	Train Acc : 0.8578
+Val loss : 0.4689	Val Acc : 0.8363
+best accuracy is 0.8373
+epoch:141
+Train loss : 0.4111	Train Acc : 0.8568
+epoch:142
+Train loss : 0.4128	Train Acc : 0.8557
+epoch:143
+Train loss : 0.4085	Train Acc : 0.8578
+epoch:144
+Train loss : 0.4097	Train Acc : 0.8576
+epoch:145
+Train loss : 0.4088	Train Acc : 0.8576
+Val loss : 0.4683	Val Acc : 0.8361
+best accuracy is 0.8373
+epoch:146
+Train loss : 0.4112	Train Acc : 0.8577
+epoch:147
+Train loss : 0.4075	Train Acc : 0.8593
+epoch:148
+Train loss : 0.4110	Train Acc : 0.8568
+epoch:149
+Train loss : 0.4083	Train Acc : 0.8580
+epoch:150
+Train loss : 0.4089	Train Acc : 0.8581
+Val loss : 0.4655	Val Acc : 0.8374
+best accuracy is 0.8374
+epoch:151
+Train loss : 0.4049	Train Acc : 0.8593
+epoch:152
+Train loss : 0.4080	Train Acc : 0.8573
+epoch:153
+Train loss : 0.4046	Train Acc : 0.8606
+epoch:154
+Train loss : 0.4049	Train Acc : 0.8599
+epoch:155
+Train loss : 0.4065	Train Acc : 0.8594
+Val loss : 0.4665	Val Acc : 0.8411
+best accuracy is 0.8411
+epoch:156
+Train loss : 0.4067	Train Acc : 0.8573
+epoch:157
+Train loss : 0.4041	Train Acc : 0.8589
+epoch:158
+Train loss : 0.4043	Train Acc : 0.8596
+epoch:159
+Train loss : 0.4047	Train Acc : 0.8598
+epoch:160
+Train loss : 0.4056	Train Acc : 0.8594
+Val loss : 0.4713	Val Acc : 0.8369
+best accuracy is 0.8411
+epoch:161
+Train loss : 0.4047	Train Acc : 0.8593
+epoch:162
+Train loss : 0.4026	Train Acc : 0.8614
+epoch:163
+Train loss : 0.4012	Train Acc : 0.8601
+epoch:164
+Train loss : 0.4018	Train Acc : 0.8605
+epoch:165
+Train loss : 0.4010	Train Acc : 0.8611
+Val loss : 0.4617	Val Acc : 0.8377
+best accuracy is 0.8411
+epoch:166
+Train loss : 0.4046	Train Acc : 0.8586
+epoch:167
+Train loss : 0.4032	Train Acc : 0.8606
+epoch:168
+Train loss : 0.4022	Train Acc : 0.8602
+epoch:169
+Train loss : 0.4004	Train Acc : 0.8608
+epoch:170
+Train loss : 0.4021	Train Acc : 0.8618
+Val loss : 0.4612	Val Acc : 0.8388
+best accuracy is 0.8411
+epoch:171
+Train loss : 0.4027	Train Acc : 0.8610
+epoch:172
+Train loss : 0.3995	Train Acc : 0.8613
+epoch:173
+Train loss : 0.3999	Train Acc : 0.8611
+epoch:174
+Train loss : 0.4019	Train Acc : 0.8599
+epoch:175
+Train loss : 0.4034	Train Acc : 0.8598
+Val loss : 0.4636	Val Acc : 0.8384
+best accuracy is 0.8411
+epoch:176
+Train loss : 0.3980	Train Acc : 0.8615
+epoch:177
+Train loss : 0.3983	Train Acc : 0.8608
+epoch:178
+Train loss : 0.3973	Train Acc : 0.8612
+epoch:179
+Train loss : 0.3982	Train Acc : 0.8611
+epoch:180
+Train loss : 0.3979	Train Acc : 0.8624
+Val loss : 0.4516	Val Acc : 0.8443
+best accuracy is 0.8443
+epoch:181
+Train loss : 0.3990	Train Acc : 0.8619
+epoch:182
+Train loss : 0.3991	Train Acc : 0.8613
+epoch:183
+Train loss : 0.3984	Train Acc : 0.8625
+epoch:184
+Train loss : 0.3957	Train Acc : 0.8630
+epoch:185
+Train loss : 0.3966	Train Acc : 0.8615
+Val loss : 0.4591	Val Acc : 0.8377
+best accuracy is 0.8443
+epoch:186
+Train loss : 0.3975	Train Acc : 0.8624
+epoch:187
+Train loss : 0.3930	Train Acc : 0.8634
+epoch:188
+Train loss : 0.3953	Train Acc : 0.8634
+epoch:189
+Train loss : 0.3952	Train Acc : 0.8618
+epoch:190
+Train loss : 0.3948	Train Acc : 0.8631
+Val loss : 0.4585	Val Acc : 0.8398
+best accuracy is 0.8443
+epoch:191
+Train loss : 0.3963	Train Acc : 0.8616
+epoch:192
+Train loss : 0.3958	Train Acc : 0.8630
+epoch:193
+Train loss : 0.3949	Train Acc : 0.8647
+epoch:194
+Train loss : 0.3921	Train Acc : 0.8639
+epoch:195
+Train loss : 0.3946	Train Acc : 0.8637
+Val loss : 0.4557	Val Acc : 0.8393
+best accuracy is 0.8443
+epoch:196
+Train loss : 0.3933	Train Acc : 0.8626
+epoch:197
+Train loss : 0.3932	Train Acc : 0.8625
+epoch:198
+Train loss : 0.3918	Train Acc : 0.8652
+epoch:199
+Train loss : 0.3953	Train Acc : 0.8615
+epoch:200
+Train loss : 0.3927	Train Acc : 0.8639
+Val loss : 0.4548	Val Acc : 0.8399
+best accuracy is 0.8443
