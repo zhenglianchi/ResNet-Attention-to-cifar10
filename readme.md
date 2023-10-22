@@ -12,6 +12,6 @@
 5. 运行classify.py可以对单个图片进行分类
 
 精度
-Sample ResNet  Train Acc : 0.7605  Val Acc : 0.6609
-ResNet50       Train Acc : 0.8647  Val Acc : 0.8443
-ResNet Attention Train Acc : 0.9457  Val Acc : 0.8854
+1. Sample ResNet  Train Acc : 0.7605  Val Acc : 0.6609
+2. ResNet50       Train Acc : 0.8647  Val Acc : 0.8443
+3. ResNet Attention Train Acc : 0.9457  Val Acc : 0.8854
