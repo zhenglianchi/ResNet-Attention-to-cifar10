@@ -9,7 +9,7 @@
 2. 使用数据增强进行训练防止过拟合
 3. 运行train.py给定模型参数可以使用不同模型进行训练
 4. 训练过后的日志和训练好的模型参数分别保存在Log和train_model下
-5. 运行classify.py可以对单个图片进行分类
+5. 运行classify.py可以对单个图片进行分类(trained_model下为基于Channel_Spatial_Attention的简单ResNet网络的参数)
 
 精度
 1. Sample ResNet  Train Acc : 0.7605  Val Acc : 0.6609
