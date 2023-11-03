@@ -5,7 +5,7 @@ import torch
 
 dict={0:"airplane",1:"automobile",2:"bird",3:"cat",4:"deer",5:"dog",
       6:"frog",7:"horse",8:"ship",9:"truck"}
-model_att.load_state_dict(torch.load("trained_model/ResNet_Att.pth"))
+model_att.load_state_dict(torch.load("trained_model/ResNet_att_scratch.pth"))
 img_src="image/dog.jpg"
 img = Image.open(img_src)
 mytransforms = transforms.Compose([
