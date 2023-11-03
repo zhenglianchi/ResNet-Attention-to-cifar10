@@ -13,9 +13,9 @@
 4. 训练过后的日志和训练好的模型参数分别保存在Log和train_model下
 5. 运行classify.py可以对单个图片进行分类
 
-精度
-Sample ResNet  Train Acc : 0.7605  Val Acc : 0.6609
-ResNet50       Train Acc : 0.8647  Val Acc : 0.8443
-ResNet Attention Train Acc : 0.9457  Val Acc : 0.8854
-ResNet50 scratch Train Acc : 0.9914  Val Acc : 0.9613
-ResNet Attention scratch Train Acc : 0.9952  Val Acc : 0.9631
+精度<br>
+Sample ResNet  Train Acc : 0.7605  Val Acc : 0.6609<br>
+ResNet50       Train Acc : 0.8647  Val Acc : 0.8443<br>
+ResNet Attention Train Acc : 0.9457  Val Acc : 0.8854<br>
+ResNet50 scratch Train Acc : 0.9914  Val Acc : 0.9613<br>
+ResNet Attention scratch Train Acc : 0.9952  Val Acc : 0.9631<br>
